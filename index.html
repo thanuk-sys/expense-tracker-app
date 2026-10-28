@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track income and expenses in a simple personal expense tracker.">
+  <title>Personal Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <div>
+        <p class="eyebrow">PERSONAL FINANCE</p>
+        <h1>Expense Tracker</h1>
+        <p class="subtitle">A simple way to understand where your money goes.</p>
+      </div>
+      <span class="header-icon" aria-hidden="true">₹</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="summary-grid" aria-label="Financial summary">
+      <article class="summary-card balance-card">
+        <p>Remaining Balance</p>
+        <h2 id="balance">₹0.00</h2>
+        <span>Income minus expenses</span>
+      </article>
+      <article class="summary-card">
+        <p>Total Income</p>
+        <h2 id="total-income">₹0.00</h2>
+        <span class="summary-icon income-icon" aria-hidden="true">↗</span>
+      </article>
+      <article class="summary-card">
+        <p>Total Expenses</p>
+        <h2 id="total-expenses">₹0.00</h2>
+        <span class="summary-icon expense-icon" aria-hidden="true">↘</span>
+      </article>
+    </section>
+
+    <div class="content-grid">
+      <section class="panel form-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">NEW TRANSACTION</p>
+            <h2>Add a transaction</h2>
+          </div>
+        </div>
+
+        <form id="transaction-form">
+          <label for="description">Description</label>
+          <input id="description" name="description" type="text"
+                 placeholder="e.g. Groceries or Monthly allowance"
+                 maxlength="80" required>
+
+          <div class="form-row">
+            <div>
+              <label for="amount">Amount (₹)</label>
+              <input id="amount" name="amount" type="number"
+                     min="0.01" step="0.01" placeholder="0.00" required>
+            </div>
+            <div>
+              <label for="type">Transaction type</label>
+              <select id="type" name="type" required>
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="category">Category</label>
+          <select id="category" name="category" required>
+            <option value="Food">Food</option>
+            <option value="Travel">Travel</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Education">Education</option>
+            <option value="Bills">Bills</option>
+            <option value="Salary">Salary</option>
+            <option value="Allowance">Allowance</option>
+            <option value="Other">Other</option>
+          </select>
+
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" required>
+
+          <button class="primary-button" type="submit">+ Add Transaction</button>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel transactions-panel">
+        <div class="section-heading transactions-heading">
+          <div>
+            <p class="eyebrow">YOUR ACTIVITY</p>
+            <h2>Transactions</h2>
+          </div>
+          <label class="filter-label" for="filter">
+            <span class="visually-hidden">Filter transactions</span>
+            <select id="filter">
+              <option value="all">All</option>
+              <option value="income">Income</option>
+              <option value="expense">Expenses</option>
+            </select>
+          </label>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          <span aria-hidden="true">🧾</span>
+          <h3>No transactions yet</h3>
+          <p>Add your first transaction to see it here.</p>
+        </div>
+
+        <ul id="transaction-list" class="transaction-list" aria-label="Transactions"></ul>
+        <div class="list-footer">
+          <span id="transaction-count">0 transactions</span>
+          <button id="clear-all" class="text-button" type="button">Clear all</button>
+        </div>
+      </section>
+    </div>
+
+    <p class="privacy-note">Your transactions are stored in this browser using Local Storage. They are not sent to a server.</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Personal Expense Tracker · Built with HTML, CSS and JavaScript</p>
+  </footer>
+</body>
+</html>
